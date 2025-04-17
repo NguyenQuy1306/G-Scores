@@ -13,10 +13,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Header />
 
       <div className="content-container">
-
         <Sidebar />
-        
-
        {children}
       </div>
       </div>

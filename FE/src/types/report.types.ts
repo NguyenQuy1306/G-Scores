@@ -6,7 +6,3 @@ export interface SubjectLevelStats {
     level4: number; // Below Average
   }
   
-  export interface SubjectStatistics {
-    [subject: string]: SubjectLevelStats;
-  }
-  

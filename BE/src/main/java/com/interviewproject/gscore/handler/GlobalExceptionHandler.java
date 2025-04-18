@@ -1,7 +1,7 @@
 package com.interviewproject.gscore.handler;
 
 import com.interviewproject.gscore.model.response.ApiResponse;
-import com.interviewproject.gscore.exception.TodoException;
+import com.interviewproject.gscore.exception.ScoreException;
 
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +44,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(TodoException.class)
-    public ResponseEntity<ApiResponse<Object>> handleTodoException(TodoException ex, WebRequest request) {
+    @ExceptionHandler(ScoreException.class)
+    public ResponseEntity<ApiResponse<Object>> handleScoreException(ScoreException ex, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
         errors.put("message", ex.getMessage());
 

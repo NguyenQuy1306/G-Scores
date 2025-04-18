@@ -9,16 +9,16 @@ const API = axios.create({
 });
 
 export const getScoreByRegistration = async (registrationNumber: string) => {
-  const response = await API.get(`/scores/${registrationNumber}`);
+  const response = await API.get(`/api/scores/${registrationNumber}`);
   return response.data;
 };
 
 export const getScoreStatistics = async () => {
-  const response = await API.get(`/scores/statistics`);
+  const response = await API.get(`/api/scores/statistics`);
   return response.data;
 };
 
 export const getTopStudentsByGroup = async (group: string, limit: number) => {
-  const response = await API.get(`/scores/top?group=${group}&limit=${limit}`);
+  const response = await API.get(`/api/scores/top?group=${group}&limit=${limit}`);
   return response.data;
 };

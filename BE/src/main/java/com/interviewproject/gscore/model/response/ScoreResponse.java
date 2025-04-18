@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScoreResponse implements Serializable {
-    private Long scoreId;
+    private String subjectName;
+    private Double score;
 
 }

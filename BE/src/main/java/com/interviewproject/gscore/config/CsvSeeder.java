@@ -53,7 +53,6 @@ public class CsvSeeder implements CommandLineRunner {
             subjectRepository.save(subject);
         });
 
-        // 2. Load CSV file
         try (CSVReader reader = new CSVReader(new InputStreamReader(
                 new ClassPathResource("data/diem_thi_thpt_2024.csv").getInputStream()))) {
 
@@ -69,10 +68,8 @@ public class CsvSeeder implements CommandLineRunner {
                     .stream()
                     .collect(Collectors.toMap(Subject::getSubjectName, s -> s));
 
-            // 3. Read each row
             String[] row;
             while ((row = reader.readNext()) != null) {
-                // 3.1 Insert student
                 Long regNo = Long.valueOf(row[0]);
                 Student student = studentRepository.findByRegistrationNumber(regNo);
                 if (student == null) {
@@ -80,7 +77,6 @@ public class CsvSeeder implements CommandLineRunner {
 
                 }
 
-                // 3.2 Insert scores
                 for (int i = 1; i < header.length - 1; i++) {
                     String raw = row[i].trim();
                     if (raw.isEmpty())
@@ -105,7 +101,6 @@ public class CsvSeeder implements CommandLineRunner {
                     scoreRepo.save(score);
                 }
 
-                // 3.3 (Tùy chọn) xử lý cột cuối nếu là mã ngoại ngữ
             }
         }
     }

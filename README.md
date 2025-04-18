@@ -95,7 +95,7 @@
 | Thành phần | Nền tảng | Đường dẫn |
 |------------|----------|-----------|
 | **Frontend** | Vercel | [https://g-scores-rkpm.vercel.app/](https://g-scores-rkpm.vercel.app/) |
-| **Backend** | Render | [https://gscore-springboot-app-v1.onrender.com](https://gscore-springboot-app-v1.onrender.com) |
+| **Backend** | Render | [https://gscore-app-be-v1.onrender.com](https://gscore-app-be-v1.onrender.com) |
 | **Database** | Supabase | *Dữ liệu CSV import vào PostgreSQL trên Supabase* |
 
 ---

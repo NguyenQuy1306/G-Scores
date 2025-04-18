@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.cfg.StatisticsSettings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.retry.stats.StatisticsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
@@ -16,11 +17,13 @@ import com.interviewproject.gscore.model.mapper.ScoreMapper;
 import com.interviewproject.gscore.model.mapper.StudentMapper;
 import com.interviewproject.gscore.model.response.ScoreResponse;
 import com.interviewproject.gscore.model.response.StatisticBySubjectResponse;
+import com.interviewproject.gscore.model.response.StudentResponse;
 import com.interviewproject.gscore.model.response.StudentScoreResponse;
 import com.interviewproject.gscore.repository.ScoreRepository;
 import com.interviewproject.gscore.repository.StudentRepository;
 import com.interviewproject.gscore.service.ScoreService;
-
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ScoreServiceImpl implements ScoreService {
+
         @Autowired
         private StudentRepository studentRepository;
         @Autowired
@@ -117,4 +121,26 @@ public class ScoreServiceImpl implements ScoreService {
                 }
         }
 
+        @Override
+        public List<StudentResponse> getTopStudentByGroup(List<String> subjects, Integer limit)
+
+        {
+                try {
+                        Pageable page = PageRequest.of(0, limit);
+                        List<StudentResponse> tops = scoreRepository.findTopBySubjects(subjects, page);
+                        return tops.stream()
+                                        .map(student -> {
+                                                List<ScoreResponse> scores = scoreRepository
+                                                                .findScoresForStudentAndSubjects(student.getStudentId(),
+                                                                                subjects);
+                                                student.setScores(scores);
+                                                return student;
+                                        })
+                                        .toList();
+                } catch (Exception e) {
+                        log.error("Failed to get overall statistics", e);
+
+                        throw new RuntimeException("Could not get score statistics", e);
+                }
+        }
 }

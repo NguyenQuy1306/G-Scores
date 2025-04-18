@@ -10,6 +10,7 @@ import com.interviewproject.gscore.model.response.ApiResponse;
 import com.interviewproject.gscore.model.response.MetadataResponse;
 import com.interviewproject.gscore.model.response.ScoreResponse;
 import com.interviewproject.gscore.model.response.StatisticBySubjectResponse;
+import com.interviewproject.gscore.model.response.StudentResponse;
 import com.interviewproject.gscore.model.response.StudentScoreResponse;
 import com.interviewproject.gscore.service.ScoreService;
 
@@ -76,25 +77,16 @@ public class ScoreController {
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 
     }
-    // @GetMapping("/top")
-    // public ResponseEntity<ApiResponse<ScoreResponse>>
-    // getScoreByGroupSubject(@RequestParam Long taskId,
-    // @RequestParam Long limit) {
-    // ApiResponse<ScoreResponse> apiResponse = new ApiResponse<>();
 
-    // try {
-    // ScoreResponse taskResponse = scoreService
-    // apiResponse.ok(taskResponse);
-    // return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
-    // } catch (ScoreException e) {
-    // apiResponse.error(Map.of("message", e.getMessage()));
-    // return ResponseEntity.status(e.getStatus()).body(apiResponse);
-    // } catch (Exception e) {
-    // apiResponse.error(Map.of("message", "Unexpected error occurred"));
-    // return
-    // ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
-    // }
-    // }
+    @GetMapping("/top")
+    public ResponseEntity<ApiResponse<List<StudentResponse>>> getTopStudentByGroup(
+            @RequestParam(required = false) List<String> subjects,
+            @RequestParam(defaultValue = "10") Integer limit) {
+        ApiResponse<List<StudentResponse>> apiResponse = new ApiResponse<>();
+        List<StudentResponse> studentResponses = scoreService.getTopStudentByGroup(subjects, limit);
+        apiResponse.ok(studentResponses);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
 
     // @DeleteMapping("/{taskId}")
     // public ResponseEntity<ApiResponse<Object>> deleteTask(@PathVariable Long

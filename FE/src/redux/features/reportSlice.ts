@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
 import { SubjectLevelStats } from "../../types/report.types";
-
+import { Student } from "../../types/student.types";
 interface ReportState {
   statistics: SubjectLevelStats;
   subjectStatistics: SubjectLevelStats[]; 
-  topStudents: any[]; 
+  topStudents: Student[]; 
   error: string;
   loading: boolean;
 }

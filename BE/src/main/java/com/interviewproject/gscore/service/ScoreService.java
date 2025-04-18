@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.interviewproject.gscore.model.response.StatisticBySubjectResponse;
+import com.interviewproject.gscore.model.response.StudentResponse;
 import com.interviewproject.gscore.model.response.StudentScoreResponse;
 
 import ch.qos.logback.core.spi.ScanException;
@@ -16,4 +17,6 @@ public interface ScoreService {
     public StatisticBySubjectResponse getStatisticOverall();
 
     public List<StatisticBySubjectResponse> getStatisticBySubject();
+
+    public List<StudentResponse> getTopStudentByGroup(List<String> subjects, Integer limit);
 }

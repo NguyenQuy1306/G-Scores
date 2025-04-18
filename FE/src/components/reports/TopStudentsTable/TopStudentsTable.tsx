@@ -2,18 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../redux/store';
 import { getTopStudents } from '../../../redux/features/reportSlice';   
-
-interface Student {
-  id: string;
-  name: string;
-  registrationNumber: string;
-  math: number;
-  physics: number;
-  chemistry: number;
-  totalScore: number;
-  average: number;
-}
-
 const TopStudentsTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { topStudents, loading } = useSelector((state: RootState) => state.reports);
@@ -46,10 +34,10 @@ const TopStudentsTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {topStudents.map((student: Student, index: number) => (
+            {topStudents.map((student, index) => (
               <tr key={student.id} className={index < 3 ? 'top-three' : ''}>
                 <td>{index + 1}</td>
-                <td>{student.name}</td>
+                {/* <td>{student.name}</td> */}
                 <td>{student.registrationNumber}</td>
                 <td>{student.math.toFixed(2)}</td>
                 <td>{student.physics.toFixed(2)}</td>

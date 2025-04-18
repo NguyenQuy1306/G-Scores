@@ -88,7 +88,8 @@
 - ✅ Kết nối với Supabase để quản lý dữ liệu PostgreSQL.
 
 ---
-
+## 🚀 Thiết kế database
+![Database Schema](er-diagram.svg)
 ## 🚀 Triển khai ứng dụng
 
 | Thành phần | Nền tảng | Đường dẫn |

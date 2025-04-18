@@ -67,6 +67,15 @@ public class ScoreController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/statistics/subjects")
+    public ResponseEntity<ApiResponse<List<StatisticBySubjectResponse>>> getStatisticBySubject() {
+        ApiResponse<List<StatisticBySubjectResponse>> apiResponse = new ApiResponse<>();
+        List<StatisticBySubjectResponse> statisticBySubjectResponse = scoreService.getStatisticBySubject();
+
+        apiResponse.ok(statisticBySubjectResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+
+    }
     // @GetMapping("/top")
     // public ResponseEntity<ApiResponse<ScoreResponse>>
     // getScoreByGroupSubject(@RequestParam Long taskId,

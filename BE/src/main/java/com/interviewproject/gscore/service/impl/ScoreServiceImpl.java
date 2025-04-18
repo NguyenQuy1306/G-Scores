@@ -95,4 +95,26 @@ public class ScoreServiceImpl implements ScoreService {
                 }
         }
 
+        @Override
+        public List<StatisticBySubjectResponse> getStatisticBySubject() {
+                try {
+                        List<StatisticBySubjectResponse> result = scoreRepository.getSubjectStatistics();
+                        for (StatisticBySubjectResponse statistic : result) {
+                                if (statistic.getSubjectName() == null) {
+                                        statistic.setSubjectName(statistic.getSubjectName());
+                                        statistic.setLevel1(0L);
+                                        statistic.setLevel2(0L);
+                                        statistic.setLevel3(0L);
+                                        statistic.setLevel4(0L);
+                                }
+                        }
+
+                        return result;
+                } catch (Exception e) {
+                        log.error("Failed to get overall statistics", e);
+
+                        throw new RuntimeException("Could not get score statistics", e);
+                }
+        }
+
 }

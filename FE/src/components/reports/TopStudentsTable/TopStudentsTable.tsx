@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../redux/store';
 import { getTopStudents } from '../../../redux/features/reportSlice';
-import { Student } from '../../../types/student.types';
 // import './TopStudentsTable.css';
 
 const SUBJECT_COMBINATIONS: Record<string, string[]> = {

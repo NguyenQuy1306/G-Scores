@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../../components/common/Header/Header';
-import Sidebar from '../../components/common/Sidebar/Sidebar';
 import ScoreLevelChart from '../../components/reports/ScoreLevelChart/ScoreLevelChart';
 import TopStudentsTable from '../../components/reports/TopStudentsTable/TopStudentsTable';
 

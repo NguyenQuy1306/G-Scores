@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getScoreStatistics } from '../../redux/features/reportSlice';
-import Header from '../../components/common/Header/Header';
-import Sidebar from '../../components/common/Sidebar/Sidebar';
 import StatisticsCard from '../../components/Dashboard/StatisticsCard/StatisticCard';
 import ScoreDistribution from '../../components/Dashboard/ScoreDistribution/ScoreDistribution';
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { statistics, loading } = useSelector((state: RootState) => state.reports || {});
+  const { statistics } = useSelector((state: RootState) => state.reports || {});
 
   useEffect(() => {
     dispatch(getScoreStatistics());

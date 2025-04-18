@@ -220,9 +220,9 @@ input {
   padding: 1.5rem;
 }
 
-.report-card.wide {
+/* .report-card.wide {
   grid-column: 1 / -1;
-}
+} */
 
 .table-container {
   overflow-x: auto;

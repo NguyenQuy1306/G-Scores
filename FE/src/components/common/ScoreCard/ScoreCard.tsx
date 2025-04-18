@@ -1,20 +1,8 @@
 import React from 'react';
-
-interface Subject {
-  name: string;
-  score: number;
-}
-
-interface ScoreData {
-  studentName: string;
-  registrationNumber: string;
-  subjects: Subject[];
-  totalScore: number;
-  average: number;
-}
+import { Score } from '../../../types/score.types';
 
 interface ScoreCardProps {
-  score: ScoreData;
+  score: Score;
 }
 
 const ScoreCard: React.FC<ScoreCardProps> = ({ score }) => {
@@ -25,18 +13,18 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ score }) => {
     return { level: 'Below Average', class: 'level-4' };
   };
 
-  const averageLevel = getScoreLevel(score.average);
+  const averageLevel = getScoreLevel(score.averageScore);
 
   return (
     <div className="score-card">
       <div className="student-info">
-        <h3>{score.studentName}</h3>
+        <h3>{score.studentName ?? 'Unknown Student'}</h3>
         <p>Registration: {score.registrationNumber}</p>
         <p className={`average ${averageLevel.class}`}>
-          Average: {score.average.toFixed(2)} - {averageLevel.level}
+          Average: {score.averageScore.toFixed(2)} - {averageLevel.level}
         </p>
       </div>
-      
+
       <div className="subject-scores">
         <h4>Subject Scores</h4>
         <table>
@@ -48,11 +36,11 @@ const ScoreCard: React.FC<ScoreCardProps> = ({ score }) => {
             </tr>
           </thead>
           <tbody>
-            {score.subjects.map((subject, index) => {
+            {score.scoreResponses.map((subject, index) => {
               const subjectLevel = getScoreLevel(subject.score);
               return (
                 <tr key={index}>
-                  <td>{subject.name}</td>
+                  <td>{subject.subjectName}</td>
                   <td>{subject.score.toFixed(2)}</td>
                   <td className={subjectLevel.class}>{subjectLevel.level}</td>
                 </tr>

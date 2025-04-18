@@ -10,6 +10,17 @@ interface ReportState {
   loading: boolean;
 }
 
+export interface TopStudentsParams {
+  limit: number;
+  subjects?: string[];
+}
+
+
+
+export type TopStudentsError = {
+  message: string;
+};
+
 const initialState: ReportState = {
   statistics: {
     subjectName: "Tổng quan", 
@@ -38,22 +49,23 @@ export const getScoreStatistics = createAsyncThunk(
 
 export const getTopStudents = createAsyncThunk(
   "reports/getTopStudents",
-  async (_, { rejectWithValue }) => {
+  async (params: TopStudentsParams, { rejectWithValue }) => {
     try {
-      const response = await api.getTopStudentsByGroup("A", 10);
-      return response.payload;
+      const response = await api.getTopStudentsBySubjects(params);
+      return response.data.payload;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
+
 export const getSubjectStatistics = createAsyncThunk(
   "reports/getSubjectStatistics",
   async (_, { rejectWithValue }) => {
     try {
       const response = await api.getSubjectStatistics();  
-      return response.data;  
+      return response.data.payload;  
     } catch (error: any) {
       return rejectWithValue(error.response.data);
     }
@@ -71,8 +83,7 @@ export const reportSlice = createSlice({
       })
       .addCase(getScoreStatistics.fulfilled, (state, action) => {
         state.loading = false;
-        state.statistics = action.payload.overall;
-        state.subjectStatistics = action.payload.bySubject;  
+        state.statistics = action.payload;
       })
       .addCase(getScoreStatistics.rejected, (state, action) => {
         state.loading = false;

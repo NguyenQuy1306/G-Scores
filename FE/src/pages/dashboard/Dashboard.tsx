@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-// import { getScoreStatistics } from '../../redux/features/reportSlice';
+import { getScoreStatistics } from '../../redux/features/reportSlice';
 import Header from '../../components/common/Header/Header';
 import Sidebar from '../../components/common/Sidebar/Sidebar';
 import StatisticsCard from '../../components/Dashboard/StatisticsCard/StatisticCard';
@@ -11,14 +11,14 @@ const Dashboard: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { statistics, loading } = useSelector((state: RootState) => state.reports || {});
 
-  // useEffect(() => {
-  //   dispatch(getScoreStatistics());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getScoreStatistics());
+  }, [dispatch]);
 
   return (
 
         <main className="main-content">
-          <h1>Dashboard</h1>
+          <h1 style={{color:"black"}}>Dashboard</h1>
           
           <div className="stats-cards">
             <StatisticsCard 

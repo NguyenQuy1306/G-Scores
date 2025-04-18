@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { getScoreByRegistration } from '../../redux/features/scoreSlice';
+import { clearCurrentScore, getScoreByRegistration } from '../../redux/features/scoreSlice';
 import ScoreCard from '../../components/common/ScoreCard/ScoreCard';
 
 const ScoreSearchForm: React.FC = () => {
   const [registrationNumber, setRegistrationNumber] = useState('');
   const dispatch = useDispatch<AppDispatch>();
   const { currentScore, loading, error } = useSelector((state: RootState) => state.scores);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (registrationNumber.trim()) {
+      dispatch(clearCurrentScore())
       dispatch(getScoreByRegistration(registrationNumber));
     }
   };

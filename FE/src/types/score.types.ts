@@ -1,19 +1,21 @@
 export interface Subject {
-    name: string;
+  subjectName: string;
     score: number;
   }
   
   export interface Score {
-    studentName: string;
     registrationNumber: string;
-    subjects: Subject[];
+    scoreResponses: Subject[];
     totalScore: number;
-    average: number;
+    averageScore: number;
+    studentName?: string; 
+
   }
   
+
   export interface ScoreState {
     currentScore: Score | null;
     error: string | null;
     loading: boolean;
   }
-  
+    

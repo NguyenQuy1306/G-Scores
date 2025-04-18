@@ -2,23 +2,19 @@ import React from 'react';
 import Header from '../../components/common/Header/Header';
 import Sidebar from '../../components/common/Sidebar/Sidebar';
 import ScoreLevelChart from '../../components/reports/ScoreLevelChart/ScoreLevelChart';
-import SubjectStatistics from '../../components/reports/SubjectStatistics/SubjectStatistics';
 import TopStudentsTable from '../../components/reports/TopStudentsTable/TopStudentsTable';
 
 const Reports: React.FC = () => {
   return (
 
         <main className="main-content">
-          <h1>Reports</h1>
+          <h1 style={{color:"black"}}>Reports</h1>
           
           <div className="reports-grid">
             <div className="report-card">
               <ScoreLevelChart />
             </div>
             
-            <div className="report-card">
-              <SubjectStatistics />
-            </div>
             
             <div className="report-card wide">
               <TopStudentsTable />

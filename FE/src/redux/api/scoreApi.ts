@@ -18,7 +18,10 @@ export const getScoreStatistics = async () => {
   return response.data;
 };
 
-export const getTopStudentsByGroup = async (group: string, limit: number) => {
-  const response = await API.get(`/api/scores/top?group=${group}&limit=${limit}`);
-  return response.data;
+export const getTopStudentsBySubjects = async (params: { limit: number; subjects?: string[] }) => {
+  const query = new URLSearchParams();
+  query.append('limit', String(params.limit));
+  params.subjects?.forEach(subject => query.append('subjects', subject));
+
+  return await API.get(`/api/scores/top?${query.toString()}`);
 };

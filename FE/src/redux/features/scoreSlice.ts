@@ -8,14 +8,18 @@ const initialState: ScoreState = {
   loading: false,
 };
 
+
 export const getScoreByRegistration = createAsyncThunk<Score, string, { rejectValue: string }>(
-  "scores/getByRegistration",
+  'scores/getScoreByRegistration',
   async (registrationNumber, { rejectWithValue }) => {
     try {
       const data = await api.getScoreByRegistration(registrationNumber);
-      return data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || "Lỗi không xác định");
+      return data.payload;
+    } catch (err: any) {
+      if (err.response && err.response.status === 404) {
+        return rejectWithValue('Không tìm thấy mã học sinh.');
+      }
+      return rejectWithValue('Đã xảy ra lỗi, vui lòng thử lại.');
     }
   }
 );

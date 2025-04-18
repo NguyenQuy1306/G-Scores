@@ -9,6 +9,6 @@ const API = axios.create({
 });
 
 export const getSubjectStatistics = async () => {
-    return await API.get("/scores/statistics/subjects");  
+    return await API.get("/api/scores/statistics/subjects");  
   };
 

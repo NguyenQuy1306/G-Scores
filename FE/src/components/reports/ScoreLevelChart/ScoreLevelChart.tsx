@@ -78,6 +78,12 @@ const ScoreLevelChart: React.FC = () => {
           plugins: {
             legend: {
               position: 'top',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 12
+                }
+              }
             },
             title: {
               display: true,
@@ -85,11 +91,22 @@ const ScoreLevelChart: React.FC = () => {
               font: {
                 size: 16,
                 weight: 'bold'
+              },
+              padding: {
+                top: 10,
+                bottom: 30
               }
             },
             tooltip: {
               mode: 'index',
               intersect: false,
+              padding: 10,
+              titleFont: {
+                size: 14
+              },
+              bodyFont: {
+                size: 12
+              }
             }
           },
           scales: {
@@ -97,16 +114,53 @@ const ScoreLevelChart: React.FC = () => {
               stacked: false,
               title: {
                 display: true,
-                text: 'Subjects'
+                text: 'Subjects',
+                font: {
+                  size: 14,
+                  weight: 'bold'
+                },
+                padding: {
+                  top: 20
+                }
+              },
+              ticks: {
+                font: {
+                  size: 12
+                },
+                maxRotation: 45,
+                minRotation: 45
               }
             },
             y: {
               stacked: false,
               title: {
                 display: true,
-                text: 'Number of Students'
+                text: 'Number of Students',
+                font: {
+                  size: 14,
+                  weight: 'bold'
+                }
               },
-              beginAtZero: true
+              beginAtZero: true,
+              ticks: {
+                font: {
+                  size: 12
+                },
+                padding: 8
+              },
+              grid: {
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: true,
+              }
+            }
+          },
+          layout: {
+            padding: {
+              left: 10,
+              right: 10,
+              top: 0,
+              bottom: 10
             }
           }
         }
@@ -150,7 +204,7 @@ const ScoreLevelChart: React.FC = () => {
         </select>
       </div>
       
-      <div className="chart-container">
+      <div className="chart-container" style={{ height: '600px' }}> 
         <canvas ref={chartRef}></canvas>
       </div>
       

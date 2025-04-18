@@ -25,16 +25,16 @@ const ScoreDistribution: React.FC = () => {
           labels: ['Excellent (≥8)', 'Good (6-8)', 'Average (4-6)', 'Below Average (<4)'],
           datasets: [{
             data: [
-              12,
-              4,
-              4,
-              5
+              statistics.level1 || 0,  
+              statistics.level2 || 0,
+              statistics.level3 || 0,
+              statistics.level4 || 0
             ],
             backgroundColor: [
-              'rgba(42, 157, 143, 0.8)',  // Green
-              'rgba(58, 134, 255, 0.8)',  // Blue
-              'rgba(251, 133, 0, 0.8)',   // Orange
-              'rgba(230, 57, 70, 0.8)'    // Red
+              'rgba(42, 157, 143, 0.8)',  
+              'rgba(58, 134, 255, 0.8)',  
+              'rgba(251, 133, 0, 0.8)',   
+              'rgba(230, 57, 70, 0.8)'    
             ],
             borderColor: [
               'rgba(42, 157, 143, 1)',
@@ -71,9 +71,9 @@ const ScoreDistribution: React.FC = () => {
               callbacks: {
                 label: function(context) {
                   const label = context.label || '';
-                  const value = context.raw ? (context.raw as number) : 0;  // Casting context.raw to number
+                  const value = context.raw ? (context.raw as number) : 0;  
                   const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0);
-                  const percentage = total > 0 ? Math.round((value / total) * 100) : 0;  // Ensure no division by zero
+                  const percentage = total > 0 ? Math.round((value / total) * 100) : 0;  
                   return `${label}: ${value} students (${percentage}%)`;
                 }
               }
@@ -87,7 +87,7 @@ const ScoreDistribution: React.FC = () => {
       });
     }
 
-    // Cleanup function
+
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();

@@ -82,6 +82,9 @@ public class ScoreController {
     public ResponseEntity<ApiResponse<List<StudentResponse>>> getTopStudentByGroup(
             @RequestParam(required = false) List<String> subjects,
             @RequestParam(defaultValue = "10") Integer limit) {
+        System.err.println("subjects: " + subjects.size());
+        System.err.println("subjects: " + subjects.get(0));
+        System.err.println("subjects: " + subjects.get(1));
         ApiResponse<List<StudentResponse>> apiResponse = new ApiResponse<>();
         List<StudentResponse> studentResponses = scoreService.getTopStudentByGroup(subjects, limit);
         apiResponse.ok(studentResponses);

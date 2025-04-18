@@ -15,5 +15,6 @@ import java.util.List;
 
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Long>, JpaSpecificationExecutor<Subject> {
+    List<Subject> findBySubjectNameIn(List<String> subjectNames);
 
 }

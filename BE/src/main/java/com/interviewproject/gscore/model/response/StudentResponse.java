@@ -16,4 +16,13 @@ public class StudentResponse {
     private Double totalScore;
     private Double average;
 
+    public StudentResponse(Long studentId,
+            Long registrationNumber,
+            Double totalScore,
+            Double average) {
+        this.studentId = studentId;
+        this.registrationNumber = registrationNumber;
+        this.totalScore = totalScore;
+        this.average = average;
+    }
 }

@@ -22,12 +22,10 @@ public class Student implements Serializable {
     @Column(name = "studentId")
     private Long studentId;
 
-    @Size(max = 255, message = "Name must be less than 255 characters")
     @Column(name = "studentName")
-    private Long studentName;
+    private String studentName;
 
     @NotNull(message = "Registration number không được để trống")
-    @Size(max = 1000, message = "Description must be less than 1000 characters")
     @Column(name = "registrationNumber", nullable = false)
     private Long registrationNumber;
 

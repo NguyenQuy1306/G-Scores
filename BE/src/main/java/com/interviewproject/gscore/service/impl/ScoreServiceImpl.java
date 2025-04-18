@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.cfg.StatisticsSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.retry.stats.StatisticsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 
@@ -49,8 +48,11 @@ public class ScoreServiceImpl implements ScoreService {
 
         @Override
         public StudentScoreResponse getScoreByRegistrationNumber(Long registrationNumber) {
-                Student student = studentRepository.findById(registrationNumber)
-                                .orElseThrow(() -> new NotFoundException("Student not found"));
+                Student student = studentRepository.findByRegistrationNumber(registrationNumber);
+                if (student == null) {
+                        throw new NotFoundException(
+                                        "Student not found with registration number: " + registrationNumber);
+                }
 
                 if (student.getScores().isEmpty()) {
                         throw new NotFoundException(

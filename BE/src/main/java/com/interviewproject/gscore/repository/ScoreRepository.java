@@ -22,7 +22,7 @@ public interface ScoreRepository extends JpaRepository<Score, ScoreId> {
     List<Score> findByStudent(Student student);
 
     @Query("""
-                SELECT new com.yourpackage.SubjectLevelStatsDTO(
+                SELECT new com.interviewproject.gscore.model.response.StatisticBySubjectResponse(
                     "Overall",
                     SUM(CASE WHEN s.score >= 8 THEN 1 ELSE 0 END),
                     SUM(CASE WHEN s.score >= 6 AND s.score < 8 THEN 1 ELSE 0 END),
@@ -34,7 +34,7 @@ public interface ScoreRepository extends JpaRepository<Score, ScoreId> {
     StatisticBySubjectResponse getStatistics();
 
     @Query("""
-                SELECT new com.yourpackage.SubjectLevelStatsDTO(
+                SELECT new com.interviewproject.gscore.model.response.StatisticBySubjectResponse(
                     s.subject.subjectName,
                     SUM(CASE WHEN s.score >= 8 THEN 1 ELSE 0 END),
                     SUM(CASE WHEN s.score >= 6 AND s.score < 8 THEN 1 ELSE 0 END),
@@ -47,16 +47,20 @@ public interface ScoreRepository extends JpaRepository<Score, ScoreId> {
     List<StatisticBySubjectResponse> getSubjectStatistics();
 
     @Query("""
-              SELECT new com.interviewproject.gscore.model.response.StudentResponse(
-                s.registrationNumber, null,SUM(sc.score),AVG(sc.score)
-              )
-              FROM Score sc
-                JOIN sc.student s
-                JOIN sc.subject sub
-              WHERE (:subjects IS NULL OR sub.subjectName IN :subjects)
-              GROUP BY s.studentId, s.registrationNumber
-              ORDER BY SUM(sc.score) DESC
-            """)
+                        SELECT new com.interviewproject.gscore.model.response.StudentResponse(
+              s.studentId,
+              s.registrationNumber,
+              SUM(sc.score),
+              AVG(sc.score)
+            )
+
+                        FROM Score sc
+                          JOIN sc.student s
+                          JOIN sc.subject sub
+                        WHERE (:subjects IS NULL OR sub.subjectName IN :subjects)
+                        GROUP BY s.studentId, s.registrationNumber
+                        ORDER BY SUM(sc.score) DESC
+                      """)
     List<StudentResponse> findTopBySubjects(
             @Param("subjects") List<String> subjects,
             Pageable pageable);

@@ -21,16 +21,11 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=Ngocquynguyen1
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATA_REDIS_HOST=redis
-      - SPRING_DATA_REDIS_PORT=6379
-      - SPRING_AUTOCONFIGURE_EXCLUDE=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-      - SPRING_CACHE_REDIS_TIME_TO_LIVE=300000
-      - SPRING_CACHE_REDIS_CACHE_NULL_VALUES=false
-      - SPRING_DATA_REDIS_TIMEOUT=60000
-      - SPRING_CACHE_CACHE_NAMES=scores
+      - SPRING_FLYWAY_ENABLED=true
+      - SPRING_FLYWAY_BASELINE-ON-MIGRATE=true
+      - SPRING_FLYWAY_LOCATIONS=classpath:db/migration
+
     depends_on:
-      redis:
-        condition: service_healthy
       db:
         condition: service_healthy
     networks:
@@ -56,26 +51,9 @@ services:
       - gscore
 
 
-  redis:
-    image: 'redis:latest'
-    container_name: redis_cache
-    restart: always
-    volumes:
-      - redis-data:/data
-    ports:
-      - "6379:6379"
-    command: [ "redis-server", "--save", "60", "1", "--loglevel", "warning" ]
-    healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - gscore
-
+ 
 volumes:
   postgres-data:
-  redis-data:
 
 networks:
   gscore:

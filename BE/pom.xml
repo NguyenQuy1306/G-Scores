@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.interviewproject</groupId>
-    <artifactId>lms</artifactId>
+    <artifactId>gscore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>interviewproject</name>
     <description>Interview Project - G-scores</description>
@@ -46,10 +46,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+
 
         <!-- Database -->
         <dependency>
@@ -57,10 +54,7 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>

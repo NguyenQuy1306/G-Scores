@@ -14,6 +14,6 @@ public class OpenAPIConfig {
                                 .info(new Info()
                                                 .title("Learning Management System API")
                                                 .version("1.0")
-                                                .description("API documentation for the LMS application"));
+                                                .description("API documentation for the gscore application"));
         }
 }

@@ -2,7 +2,6 @@ import MainLayout from "../layout/MainLayout"
 import Dashboard from "../pages/dashboard/Dashboard"
 import Reports from "../pages/reports/Reports"
 import SearchScores from "../pages/searchscore/SearchScores"
-import Upload from "../pages/uploadfile/uploadfile"
 export const routes = [
 
   {
@@ -11,12 +10,7 @@ export const routes = [
     layout: MainLayout,
     role: "owner",
   },
-  {
-    path: "/upload",
-    component:Upload,
-    layout: MainLayout,
-    role: ["guest", "customer", "owner"],
-  },
+
 
   {
     path: "/reports",

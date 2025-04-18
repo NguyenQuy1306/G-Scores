@@ -22,9 +22,7 @@ const Sidebar: React.FC = () => {
           <li className={isActive('/settings') ? 'active' : ''}>
             <Link to="/settings">Settings</Link>
           </li>
-          <li className={isActive('/upload') ? 'active' : ''}>
-            <Link to="/upload">Data Upload</Link>
-          </li>
+        
         </ul>
       </div>
     </div>

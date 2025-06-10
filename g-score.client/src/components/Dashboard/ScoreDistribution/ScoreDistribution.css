@@ -1,0 +1,76 @@
+.score-distribution-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* .chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  } */
+  
+  .score-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  
+  .legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 50%;
+  }
+  
+  .level-1 {
+    background-color: rgba(42, 157, 143, 0.8);
+  }
+  
+  .level-2 {
+    background-color: rgba(58, 134, 255, 0.8);
+  }
+  
+  .level-3 {
+    background-color: rgba(251, 133, 0, 0.8);
+  }
+  
+  .level-4 {
+    background-color: rgba(230, 57, 70, 0.8);
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  /* @media (max-width: 768px) {
+    .chart-container {
+      height: 250px;
+    }
+    
+    .score-legend {
+      grid-template-columns: 1fr 1fr;
+    }
+  } */
+  
+  @media (max-width: 576px) {
+    .score-legend {
+      grid-template-columns: 1fr;
+    }
+  }
